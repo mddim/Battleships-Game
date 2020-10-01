@@ -254,14 +254,11 @@ public class Game {
 
     public void welcome(Player player) {
         setInputAndOutput();
-
         PrintWriter playerOut = player.getOut();
-
         playerOut.println("Lets play!");
     }
 
     private int gameLogicLoop() {
-
         while (!boardPlayerOne.checkLost() && !boardPlayerTwo.checkLost()) {
             if (turn == FIRST_PLAYER_TURN) {
                 playerTwoOut.println(playerOne.getName() + "'s turn.");
@@ -309,7 +306,6 @@ public class Game {
     }
 
     public int play() {
-
         //set ships on boards
         Thread t1 = new Thread(() -> {
             boardPlayerOne.printBoard(playerOneOut);
@@ -322,28 +318,21 @@ public class Game {
             playerTwo.setShips(readShips(playerTwoIn, playerTwoOut));
             boardPlayerTwo.setShipsOnBoard(playerTwo.getShips());
         });
-
         t1.start();
         t2.start();
-
         try {
             t1.join();
             t2.join();
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-
         return gameLogicLoop();
     }
 
     public int continueGame(Board board1, Board board2, int currentTurn) {
-
         boardPlayerOne = board1;
         boardPlayerTwo = board2;
         turn = currentTurn;
-
         return gameLogicLoop();
-
     }
-
 }
