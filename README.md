@@ -35,7 +35,7 @@ $ java client.java
 
 # Извеждане на възможните команди
 Choose a command: 
-  username <username> - to set username
+  username <username> - to \set username
   list-users - to list all online users 
   create-game <game-name> - to create a game 
   join-game <game-name> - to join game <game-name> 
@@ -48,7 +48,7 @@ Choose a command:
   disconnect - to disconnect
 
 > username mimdim
-Username set to mimdim
+Username \set to mimdim
 > create-game my-game
 Game my-game has been created.
 ```
@@ -61,7 +61,7 @@ $ java client.java
 # извеждане на възможните команди
 
 > username darlik
-Username set to darlik
+Username \set to darlik
 
 > list-games
 my-game -> creator: mimdim | status: pending | [0/2]
@@ -150,6 +150,8 @@ $ java client.java
 
 > save-game
 Game "my-game" saved successfully.
+> list-games
+my-game -> creator: mimdim | status: saved | [2/2]
 > list-saved-games
 my-game
 > load-game my-game
