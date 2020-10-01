@@ -41,12 +41,10 @@ public class ClientHandler extends Thread {
     private boolean isGameRunning = false;
 
     public ClientHandler(Socket socket, List<ClientHandler> onlineClients, List<Game> games) {
-
         this.socket = socket;
         this.onlineClients = onlineClients;
         this.games = games;
         this.savedGames = new HashMap<>();
-
     }
 
     public String getClientName() {
@@ -104,23 +102,17 @@ public class ClientHandler extends Thread {
 
     @Override
     public void run() {
-
         try {
-
             out = new PrintWriter(socket.getOutputStream(), true);
             in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
-
             out.print(COMMANDS);
             out.flush();
-
             while (true) {
-
                 if (!isGameRunning) {
                     //after the game has been started, the second player is reading the first input line here :(
                     //the thread is already past the if
                     String line = in.readLine();
                     String command = line.split("\\s+")[0];
-
                     switch (command) {
 
                         case "username":
@@ -198,7 +190,6 @@ public class ClientHandler extends Thread {
 
                             out.print("Invalid command! \n" + COMMANDS);
                             out.flush();
-
                     }
                 }
             }
@@ -213,7 +204,6 @@ public class ClientHandler extends Thread {
                 System.out.println("I/O exception while closing socket.");
             }
         }
-
     }
 
     private boolean doesUsernameAlreadyExist(String username) {
@@ -228,7 +218,6 @@ public class ClientHandler extends Thread {
     }
 
     public void registerClient(String name) {
-
         boolean correct = false;
         while (!correct) {
             if (!onlineClients.isEmpty()) {
@@ -266,7 +255,6 @@ public class ClientHandler extends Thread {
     }
 
     public void createGame(String gameName) {
-
         boolean correct = false;
         while (!correct) {
             if (!onlineClients.isEmpty()) {
@@ -289,7 +277,6 @@ public class ClientHandler extends Thread {
         games.add(new Game(gameName, this.getClientName()));
         out.println("Game " + gameName + " has been created.");
         //joinGame(gameName);
-
     }
 
     private void listGames() {
@@ -508,11 +495,8 @@ public class ClientHandler extends Thread {
     }
 
     private void disconnect() {
-
         System.out.println(clientName + " disconnected.");
         onlineClients.remove(this);
         out.println("Disconnected");
-
     }
-
 }
