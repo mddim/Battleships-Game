@@ -96,9 +96,11 @@ J |_|_|_|_|_|_|_|_|_|_|
 Please select your ships! Write first and last cell of the ship. (e.g. A1 A5)
 5 cells long ships: 
 #1: A1 A5
-#2: B1 B4
-#3: C1 C4
-#4: D1 D3
+4 cells long ships: 
+#1: B1 B4
+#2: C1 C4
+3 cells long ships:
+#1: D1 D3
 ...
 ```
 
