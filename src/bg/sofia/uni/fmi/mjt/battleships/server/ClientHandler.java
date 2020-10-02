@@ -405,6 +405,10 @@ public class ClientHandler extends Thread {
     }
 
     private void startGame() {
+        if (activeGame.getPlayerTwo() == null) {
+            out.println("Waiting for second player to join!");
+            return;
+        }
         int gameStatus = 0;
         if (this.getClientName().equals(activeGame.getCreator())) {
             activeGame.welcome(activeGame.getPlayerOne());
